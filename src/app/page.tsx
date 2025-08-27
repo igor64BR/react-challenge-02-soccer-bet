@@ -6,9 +6,9 @@ import Event from "@/components/Event/Event";
 import { Box, Button, Divider, Typography } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import AppDrawer from "@/components/AppDrawer/AppDrawer";
-import {
-  BetManagerContextProvider,
-} from "@/services/BetManager.service";
+import { BetManagerContextProvider } from "@/services/BetManager.service";
+import data from "../data/data.json";
+import { AppResponseType } from "@/types/types";
 
 function Home() {
   const [response, setResponse] = useState<AppResponseType>();
@@ -19,7 +19,7 @@ function Home() {
   }, []);
 
   const requestData = () => {
-    const response = require("../data/data.json") as AppResponseType;
+    const response = data as AppResponseType;
 
     setResponse(response);
   };

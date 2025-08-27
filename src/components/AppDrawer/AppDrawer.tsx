@@ -1,8 +1,7 @@
-import { Box, Button, Drawer, Typography } from "@mui/material";
+import { Box, Button, Drawer } from "@mui/material";
 import { FunctionComponent, useContext } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import "../../app/globals.css";
-import styles from "./styles.module.css";
 import Bet from "./components/Bet";
 import { BetManagerContext } from "@/services/BetManager.service";
 
@@ -41,7 +40,7 @@ const AppDrawer: FunctionComponent<AppDrawerProps> = (props) => {
         </Box>
         <Box display="flex" flexDirection="column" alignItems="center">
           {bets.map((x, i) => (
-            <Bet {...x} />
+            <Bet {...x} key={i} />
           ))}
         </Box>
       </Box>

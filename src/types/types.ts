@@ -1,10 +1,10 @@
 /** The response type of the API call */
-type AppResponseType = EventType[];
+export type AppResponseType = EventType[];
 
 /** Event Entity
  * Represents a match between two teams
  */
-type EventType = {
+export type EventType = {
   id: string;
   name: string;
   markets: MarketType[];
@@ -13,7 +13,7 @@ type EventType = {
 /** Market Entity
  * Represents a betting market within an event
  */
-type MarketType = {
+export type MarketType = {
   id: string;
   name: string;
   selections: SelectionType[];
@@ -22,7 +22,7 @@ type MarketType = {
 /** Selection Entity
  * Represents a betting selection within a market
  */
-type SelectionType = {
+export type SelectionType = {
   id: string;
   name: string;
   price: number;
@@ -37,7 +37,7 @@ type SelectionType = {
  * @property {number} value - The value of the bet
  * @property {number} multiplier - The multiplier for the bet
  */
-type BetType = {
+export type BetType = {
   id: string;
   selection: SelectionType;
   multiplier: number;

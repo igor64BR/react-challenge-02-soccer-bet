@@ -6,8 +6,7 @@
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
     "start": "next start",
-    "lint": "eslint",
-    "tcm": "tcm -w src -p '**/*.module.css'"
+    "lint": "eslint"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -21,12 +20,12 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@types/material-ui": "^0.21.18",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.5.0",
-    "typed-css-modules": "^0.9.1",
     "typescript": "^5"
   },
   "packageManager": "yarn@4.9.4"
