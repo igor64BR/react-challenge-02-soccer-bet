@@ -1,3 +1,4 @@
+import { BetType } from "@/types/types";
 import { createContext, useState } from "react";
 
 type BetManagerContextProviderProps = {

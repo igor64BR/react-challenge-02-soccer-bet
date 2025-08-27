@@ -1,6 +1,7 @@
 import { FunctionComponent, useContext, useRef } from "react";
 import { Box, Button, Divider, Typography } from "@mui/material";
 import { BetManagerContext } from "@/services/BetManager.service";
+import { EventType, MarketType, SelectionType } from "@/types/types";
 
 type EventProps = EventType;
 
@@ -28,12 +29,12 @@ const Event: FunctionComponent<EventProps> = (props) => {
     );
   };
 
-  const addBet = (x: SelectionType) => {
+  const addBet = (selection: SelectionType, market: MarketType) => {
     try {
       return betManager.addBet({
-        id: `${x.id}_${x.name}_${x.price}`,
-        selection: x,
-        multiplier: x.price,
+        id: `${selection.id}_${selection.name}_${selection.price}`,
+        selection,
+        market,
       });
     } catch (ex) {
       console.log("Could not add bet:", ex);
@@ -55,7 +56,7 @@ const Event: FunctionComponent<EventProps> = (props) => {
       <Divider component="hr" />
 
       <Box component="div" display="flex" flexDirection="column">
-        {props.markets.map((x, i) => (
+        {props.markets.map((market, i) => (
           <Box
             key={i}
             display="flex"
@@ -70,12 +71,16 @@ const Event: FunctionComponent<EventProps> = (props) => {
               key={i}
               fontSize="1.3rem"
             >
-              {x.name}
+              {market.name}
             </Typography>
 
             <Box flex={1} display="flex" justifyContent="space-between" gap={2}>
-              {x.selections.map((x, i) => (
-                <Button key={i} color="inherit" onClick={() => addBet(x)}>
+              {market.selections.map((selection, i) => (
+                <Button
+                  key={i}
+                  color="inherit"
+                  onClick={() => addBet(selection, market)}
+                >
                   <Box
                     border="1px solid var(--background)"
                     boxShadow="0.2rem 0.2rem 0.5rem color-mix(in srgb, var(--background) 60%, black), -0.2rem -0.2rem 0.5rem color-mix(in srgb, var(--background) 92%, white)"
@@ -86,9 +91,9 @@ const Event: FunctionComponent<EventProps> = (props) => {
                     flex={"1 1 auto"}
                   >
                     <Typography component="span" fontWeight="bold">
-                      {x.name}
+                      {selection.name}
                     </Typography>
-                    <Typography>{x.price}</Typography>
+                    <Typography>{selection.price}</Typography>
                   </Box>
                 </Button>
               ))}

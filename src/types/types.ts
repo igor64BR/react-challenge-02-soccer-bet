@@ -40,5 +40,5 @@ export type SelectionType = {
 export type BetType = {
   id: string;
   selection: SelectionType;
-  multiplier: number;
+  market: MarketType;
 };

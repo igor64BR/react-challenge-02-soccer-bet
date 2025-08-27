@@ -1,4 +1,5 @@
 import { BetManagerContext } from "@/services/BetManager.service";
+import { BetType } from "@/types/types";
 import { Box, Button, Typography } from "@mui/material";
 import { FunctionComponent, useContext } from "react";
 
@@ -22,9 +23,14 @@ const Bet: FunctionComponent<BetProps> = (props) => {
       textAlign={"center"}
       gap={2}
     >
-      <Typography variant="h5" component="h3">
-        {props.selection.name}
-      </Typography>
+      <Box>
+        <Typography variant="h5" component="h3" fontWeight="bold">
+          {props.market.name}
+        </Typography>
+        <Typography variant="h6" component="h6">
+          {props.selection.name}
+        </Typography>
+      </Box>
       <Typography variant="body1" component={"p"}>
         {props.selection.price}
       </Typography>
