@@ -1,14 +1,13 @@
 "use client";
 
-import styles from "./page.module.css";
 import { useEffect, useState } from "react";
 import Event from "@/components/Event/Event";
-import { Box, Button, Divider, Typography } from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
+import { Box, Divider } from "@mui/material";
 import AppDrawer from "@/components/AppDrawer/AppDrawer";
 import { BetManagerContextProvider } from "@/services/BetManager.service";
 import data from "../data/data.json";
 import { AppResponseType } from "@/types/types";
+import Header from "./components/Header";
 
 function Home() {
   const [response, setResponse] = useState<AppResponseType>();
@@ -26,24 +25,7 @@ function Home() {
 
   return (
     <Box>
-      <Box
-        component="header"
-        display="flex"
-        justifyContent="space-between"
-        alignItems="center"
-        px={2}
-      >
-        <Typography variant="h4" component="h1" fontWeight="bold">
-          Soccer Bets!
-        </Typography>
-        <Button
-          onClick={() => setSideMenuIsOpen(true)}
-          color="inherit"
-          className={styles.hamburgerMenu}
-        >
-          <MenuIcon fontSize="large" />
-        </Button>
-      </Box>
+      <Header onMenuClick={() => setSideMenuIsOpen(true)} />
       <Divider />
       <Box
         display="flex"
