@@ -28,8 +28,8 @@ const AppDrawer: FunctionComponent<AppDrawerProps> = (props) => {
       <Box
         sx={{
           width: {
-            xs: "100vw", // mobile and tablet
-            md: "30vw", // desktop and up (md = 900px by default in MUI)
+            xs: "100vw",
+            md: "30vw",
           },
         }}
       >
