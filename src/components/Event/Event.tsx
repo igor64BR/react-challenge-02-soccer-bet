@@ -1,11 +1,14 @@
-import { FunctionComponent, useRef } from "react";
-import styles from "./styles.module.css";
-import { Box, Container, Divider, Typography } from "@mui/material";
+import { FunctionComponent, useContext, useRef } from "react";
+import { Box, Button, Divider, Typography } from "@mui/material";
+import { BetManagerContext } from "@/services/BetManager.service";
 
 type EventProps = EventType;
 
 const Event: FunctionComponent<EventProps> = (props) => {
   const matchTeams = useRef(props.name.split(" vs "));
+
+  const { useBetManager } = useContext(BetManagerContext);
+  const betManager = useBetManager();
 
   const renderTeams = () => {
     const [firstTeam, secondTeam] = matchTeams.current;
@@ -25,6 +28,18 @@ const Event: FunctionComponent<EventProps> = (props) => {
     );
   };
 
+  const addBet = (x: SelectionType) => {
+    try {
+      return betManager.addBet({
+        id: `${x.id}_${x.name}_${x.price}`,
+        selection: x,
+        multiplier: x.price,
+      });
+    } catch (ex) {
+      console.log("Could not add bet:", ex);
+    }
+  };
+
   return (
     <Box
       component="div"
@@ -37,11 +52,18 @@ const Event: FunctionComponent<EventProps> = (props) => {
     >
       {renderTeams()}
 
-      <Divider component="hr" className={styles.divider} />
+      <Divider component="hr" />
 
       <Box component="div" display="flex" flexDirection="column">
         {props.markets.map((x, i) => (
-          <Box display="flex" flexDirection="column" px={2} py={1} gap={1}>
+          <Box
+            key={i}
+            display="flex"
+            flexDirection="column"
+            px={2}
+            py={1}
+            gap={1}
+          >
             <Typography
               variant="body1"
               component="h4"
@@ -53,19 +75,22 @@ const Event: FunctionComponent<EventProps> = (props) => {
 
             <Box flex={1} display="flex" justifyContent="space-between" gap={2}>
               {x.selections.map((x, i) => (
-                <Box
-                  key={i}
-                  border="1px solid var(--background)"
-                  boxShadow="0.2rem 0.2rem 0.5rem color-mix(in srgb, var(--background) 60%, black), -0.2rem -0.2rem 0.5rem color-mix(in srgb, var(--background) 92%, white)"
-                  borderRadius={3}
-                  py={0.5}
-                  textAlign="center"
-                  width="8rem"
-                  flex={"1 1 auto"}
-                >
-                  <Typography component="span" fontWeight='bold'>{x.name}</Typography>
-                  <Typography>{x.price}</Typography>
-                </Box>
+                <Button key={i} color="inherit" onClick={() => addBet(x)}>
+                  <Box
+                    border="1px solid var(--background)"
+                    boxShadow="0.2rem 0.2rem 0.5rem color-mix(in srgb, var(--background) 60%, black), -0.2rem -0.2rem 0.5rem color-mix(in srgb, var(--background) 92%, white)"
+                    borderRadius={3}
+                    py={0.5}
+                    textAlign="center"
+                    width="8rem"
+                    flex={"1 1 auto"}
+                  >
+                    <Typography component="span" fontWeight="bold">
+                      {x.name}
+                    </Typography>
+                    <Typography>{x.price}</Typography>
+                  </Box>
+                </Button>
               ))}
             </Box>
           </Box>

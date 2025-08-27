@@ -16,6 +16,11 @@ body {
   overflow-x: hidden;
 }
 
+hr {
+  background-color: var(--foreground);
+  height: 2px;
+}
+
 body {
   color: var(--foreground);
   background: var(--background);

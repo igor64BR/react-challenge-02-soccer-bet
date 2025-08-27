@@ -1,6 +1,7 @@
 declare const styles: {
   readonly "ctas": string;
   readonly "footer": string;
+  readonly "hamburgerMenu": string;
   readonly "logo": string;
   readonly "main": string;
   readonly "page": string;
