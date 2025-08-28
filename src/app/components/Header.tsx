@@ -14,7 +14,10 @@ const Header: FunctionComponent<HeaderProps> = (props) => {
       display="flex"
       justifyContent="space-between"
       alignItems="center"
-      px={2}
+      padding={`1rem`}
+      boxShadow={'inset 0.2rem 0.2rem 0.3rem black, inset -0.2rem -0.2rem 0.3rem color-mix(in srgb, var(--background) 80%, white)'}
+      borderRadius={'1rem'}
+      margin={2}
     >
       <Typography variant="h4" component="h1" fontWeight="bold">
         Soccer Bets!
@@ -23,6 +26,15 @@ const Header: FunctionComponent<HeaderProps> = (props) => {
         onClick={props.onMenuClick}
         color="inherit"
         className={styles.hamburgerMenu}
+        sx={{
+          boxShadow: `
+            0.2rem 0.2rem 0.5rem black, 
+            -0.2rem -0.2rem 0.5rem color-mix(in srgb, var(--foreground) 10%, transparent),
+            inset -0.2rem -0.2rem 0.3rem black, 
+            inset 0.2rem 0.2rem 0.3rem color-mix(in srgb, var(--background) 80%, white)`,
+          borderRadius: '50%',
+          margin: '0.5rem'
+        }}
       >
         <MenuIcon fontSize="large" />
       </Button>

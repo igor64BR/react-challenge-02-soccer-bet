@@ -26,7 +26,6 @@ function Home() {
   return (
     <Box>
       <Header onMenuClick={() => setSideMenuIsOpen(true)} />
-      <Divider />
       <Box
         display="flex"
         flexDirection="column"
